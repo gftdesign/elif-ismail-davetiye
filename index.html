@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <title>Elif & İsmail Can Nişan Davetiyesi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <audio id="yerel-ses" loop preload="auto">
+        <source src="music/sarki.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="zarf-ekrani" onclick="davetiyeyiAc()">
+        <div class="zarf-kutu">
+            <div class="zarf-resim">✉️</div>
+            <p class="zarf-yazi">Açmak için dokunun</p>
+        </div>
+        <button class="atla-buton" onclick="davetiyeyiAc()">Atla</button>
+    </div>
+
+    <div id="ana-icerik" class="gizli">
+        
+        <div class="sayac-alani">
+            <div class="sayac-kutu"><span id="gun">00</span><p>Gün</p></div>
+            <div class="sayac-kutu"><span id="saat">00</span><p>Saat</p></div>
+            <div class="sayac-kutu"><span id="dakika">00</span><p>Dakika</p></div>
+            <div class="sayac-kutu"><span id="saniye">00</span><p>Saniye</p></div>
+        </div>
+
+        <div class="davetiye-gövde">
+            <img src="davetiye-tam.png" alt="Elif & İsmail Can Nişan Davetiyesi" class="ana-tasarim-resmi">
+
+            <div class="buton-alani">
+                <a href="https://maps.google.com/?q=Sultanbeyli+Madambasbar+Davet+Salonu" target="_blank" class="harita-butonu">
+                    📍 Yol Tarifi Al
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+    function davetiyeyiAc() {
+        // Zarfı yukarı kaydır ve saydamlaştır
+        var zarf = document.getElementById('zarf-ekrani');
+        zarf.style.transform = 'translateY(-100vh)';
+        zarf.style.opacity = '0';
+        
+        // Asıl davetiye içeriğini görünür yap ve animasyonu tetikle
+        var icerik = document.getElementById('ana-icerik');
+        icerik.classList.remove('gizli');
+        setTimeout(function() {
+            icerik.classList.add('goster');
+        }, 50); // Küçük bir gecikme efektin pürüzsüz başlamasını sağlar
+
+        setTimeout(function() {
+            zarf.style.display = 'none';
+        }, 600);
+
+        var sarki = document.getElementById("yerel-ses");
+        sarki.play().catch(function(error) {
+            console.log("Müzik tarayıcı engeline takıldı: ", error);
+        });
+    }
+
+    /* GERİ SAYIM SAYAÇ SCRIPT'İ */
+    const nisanTarihi = new Date("June 14, 2026 00:00:00").getTime();
+
+    const x = setInterval(function() {
+        const simdi = new Date().getTime();
+        const kalanSure = nisanTarihi - simdi;
+
+        const gun = Math.floor(kalanSure / (1000 * 60 * 60 * 24));
+        const saat = Math.floor((kalanSure % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const dakika = Math.floor((kalanSure % (1000 * 60 * 60)) / (1000 * 60));
+        const saniye = Math.floor((kalanSure % (1000 * 60)) / 1000);
+
+        document.getElementById("gun").innerHTML = gun < 10 ? "0" + gun : gun;
+        document.getElementById("saat").innerHTML = saat < 10 ? "0" + saat : saat;
+        document.getElementById("dakika").innerHTML = dakika < 10 ? "0" + dakika : dakika;
+        document.getElementById("saniye").innerHTML = saniye < 10 ? "0" + saniye : saniye;
+
+        if (kalanSure < 0) {
+            clearInterval(x);
+            document.querySelector(".sayac-alani").innerHTML = "<div class='sayac-kutu' style='flex:1; padding:15px;'><span style='font-size:22px;'>Mutlu Günümüz Geldi!</span></div>";
+        }
+    }, 1000);
+    </script>
+
+</body>
+</html>

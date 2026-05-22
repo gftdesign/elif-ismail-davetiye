@@ -1,0 +1,182 @@
+@charset "utf-8";
+
+/* ==========================================
+   GENEL SIFIRLAMA & MOBİL ODAK
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f6efe5; /* Dış boşluklar için tasarıma tam uyumlu arka plan rengi */
+    font-family: sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================
+   1. EKRAN: BÜYÜK ZARF KARŞILAMA
+   ========================================== */
+#zarf-ekrani {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #fcf8f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease-in-out;
+}
+
+.zarf-kutu {
+    text-align: center;
+    cursor: pointer;
+}
+
+.zarf-resim {
+    font-size: 180px; 
+    line-height: 1;
+    display: inline-block;
+    animation: sallan 2.5s infinite ease-in-out;
+}
+
+.zarf-yazi {
+    font-family: 'Playfair Display', serif; 
+    font-style: italic; 
+    font-weight: 500;
+    font-size: 36px; 
+    color: #615349;
+    margin-top: 25px;
+    letter-spacing: 0.5px;
+}
+
+.atla-buton {
+    position: absolute;
+    bottom: 60px;
+    border: none;
+    background: none;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: #8c7f76;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+@keyframes sallan {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.gizli {
+    display: none !important;
+}
+
+/* ==========================================
+   2. EKRAN: SİNEMATİK GEÇİŞLİ ANA İÇERİK
+   ========================================== */
+#ana-icerik {
+    width: 100%;
+    max-width: 450px; 
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    background-color: #fcf6ef;
+    box-shadow: 0 0 40px rgba(0,0,0,0.15);
+    
+    /* Yumuşak yavaşça gelme (fade-in) efekti */
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out; 
+}
+
+#ana-icerik.goster {
+    opacity: 1;
+}
+
+/* GERİ SAYIM SAYAÇ ALANI */
+.sayac-alani {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    width: 92%;
+    margin-top: 5px;
+    margin-bottom: 15px; 
+}
+
+.sayac-kutu {
+    background: #ffffff;
+    border-radius: 12px;
+    flex: 1;
+    padding: 10px 2px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.sayac-kutu span {
+    font-size: 26px;
+    font-weight: bold;
+    color: #413730;
+    display: block;
+    line-height: 1;
+}
+
+.sayac-kutu p {
+    font-size: 14px;
+    color: #7a6e65;
+    margin-top: 2px;
+}
+
+/* DAVETİYE GÖVDE ALANI */
+.davetiye-gövde {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ANA TASARIM RESMİ */
+.ana-tasarim-resmi {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* YOL TARİFİ BUTON ALANI */
+.buton-alani {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px; 
+    margin-bottom: 10px;
+}
+
+.harita-butonu {
+    display: inline-block;
+    background: #766559; 
+    color: white;
+    text-decoration: none;
+    
+    /* İŞTE DEĞİŞİKLİK BURADA: Yazı tipi italik ve tırnaklı font yapıldı */
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 26px; /* Font yapısına göre okunurluğu artırmak için hafif büyütüldü */
+    
+    padding: 10px 0;
+    width: 88%; 
+    border-radius: 30px;
+    box-shadow: 0 6px 18px rgba(118, 101, 89, 0.25);
+    transition: transform 0.2s;
+}
+
+.harita-butonu:active {
+    transform: scale(0.98);
+}
