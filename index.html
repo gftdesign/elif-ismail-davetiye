@@ -15,7 +15,9 @@
 
     <div id="zarf-ekrani" onclick="davetiyeyiAc()">
         <div class="zarf-kutu">
-            <div class="zarf-resim">✉️</div>
+            <div class="zarf-resim">
+                <img src="zarf-tam.png" alt="Zarf">
+            </div>
             <p class="zarf-yazi">Açmak için dokunun</p>
         </div>
         <button class="atla-buton" onclick="davetiyeyiAc()">Atla</button>
@@ -34,7 +36,7 @@
             <img src="davetiye-tam.png" alt="Elif & İsmail Can Nişan Davetiyesi" class="ana-tasarim-resmi">
 
             <div class="buton-alani">
-                <a href="https://maps.google.com/?q=Sultanbeyli+Madambasbar+Davet+Salonu" target="_blank" class="harita-butonu">
+                <a href="https://www.google.com/maps/search/?api=1&query=Madambasbar+Davet+Salonu+Sultanbeyli" target="_blank" class="harita-butonu">
                     📍 Yol Tarifi Al
                 </a>
             </div>
@@ -44,17 +46,15 @@
 
     <script>
     function davetiyeyiAc() {
-        // Zarfı yukarı kaydır ve saydamlaştır
         var zarf = document.getElementById('zarf-ekrani');
         zarf.style.transform = 'translateY(-100vh)';
         zarf.style.opacity = '0';
         
-        // Asıl davetiye içeriğini görünür yap ve animasyonu tetikle
         var icerik = document.getElementById('ana-icerik');
         icerik.classList.remove('gizli');
         setTimeout(function() {
             icerik.classList.add('goster');
-        }, 50); // Küçük bir gecikme efektin pürüzsüz başlamasını sağlar
+        }, 50); 
 
         setTimeout(function() {
             zarf.style.display = 'none';
@@ -62,11 +62,11 @@
 
         var sarki = document.getElementById("yerel-ses");
         sarki.play().catch(function(error) {
-            console.log("Müzik tarayıcı engeline takıldı: ", error);
+            console.log("Müzik yerel önizlemede tetiklendi.");
         });
     }
 
-    /* GERİ SAYIM SAYAÇ SCRIPT'İ */
+    /* GERİ SAYIM SAYAÇ SCRIPT'İ (14 Haziran 2026 Nişan Gününe Kilitli) */
     const nisanTarihi = new Date("June 14, 2026 00:00:00").getTime();
 
     const x = setInterval(function() {
